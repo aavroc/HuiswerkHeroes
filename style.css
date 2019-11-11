@@ -1,0 +1,266 @@
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: whitesmoke;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.viewport-1 {
+    width: 100%;
+
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('img/apple-class-conference-7102.jpg');
+    height: 100vh;
+}
+
+
+.navbar {
+    padding-right: 4%;
+    padding-top: 4%;
+    text-align: right;
+
+}
+
+.navbar a {
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    padding: 13px;
+
+
+}
+
+.section-1-text {
+
+    padding-top: 15%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-1-text h1 {
+    color: white;
+    border-bottom: 1px solid white;
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    font-size: 50px;
+}
+
+.section-1-text h3 {
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+.button-register {
+    font-size: 15px;
+    background-color: #26A6A6;
+    width: 10%;
+    color: white;
+    padding: 20px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.viewport-2 {
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+
+
+}
+
+
+
+.section-2-text {
+
+    padding-top: 5%;
+}
+
+.section-2-text h1 {
+    text-align: center;
+    font-size: 50px;
+
+
+
+
+
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .container-hamburger{
+        padding: 20px;
+
+    }
+   
+    .hamburger-icon {
+        
+        width: 35px;
+        height: 5px;
+        background-color: whitesmoke;
+        margin: 6px;
+        margin-left: auto;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+
+
+    .section-1-text {
+
+        padding-top: 25%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .section-1-text h1 {
+        color: white;
+        border-bottom: 1px solid white;
+        width: 65%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        font-size: 30px;
+    }
+
+    .section-1-text h3 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        font-size: 20px;
+        color: whitesmoke;
+    }
+
+
+    .button-register {
+        font-size: 15px;
+        background-color: #26A6A6;
+        width: 45%;
+        color: white;
+        padding: 15px 15px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+
+
+
+    .navbar {
+        display: block;
+    }
+
+    .section-1-text {
+
+        padding-top: 12%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .section-1-text h1 {
+        color: white;
+        border-bottom: 1px solid white;
+        width: 50%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        font-size: 40px;
+    }
+
+    .section-1-text h3 {
+        font-size: 25px;
+        color: whitesmoke;
+    }
+
+
+    .button-register {
+        font-size: 25px;
+        background-color: #26A6A6;
+        width: 15%;
+        color: white;
+        padding: 20px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
+
+
+
+}
+
+@media only screen and (min-width: 992px) {
+
+    .navbar {
+        display: block;
+    }
+
+    .section-1-text {
+
+        padding-top: 12%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .section-1-text h1 {
+        color: white;
+        border-bottom: 1px solid white;
+        width: 50%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        font-size: 40px;
+    }
+
+    .section-1-text h3 {
+        font-size: 25px;
+        color: whitesmoke;
+    }
+
+
+    .button-register {
+        font-size: 25px;
+        background-color: #26A6A6;
+        width: 15%;
+        color: white;
+        padding: 20px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
+
+
+} 
+
+
+ 
