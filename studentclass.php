@@ -52,7 +52,7 @@ class User
     public function register($naam, $email, $username, $password)
 	{
 	        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
-			$sql2 = "INSERT INTO inloggegevens (fullname, email, username, 'password') VALUES (:naam, :email, :username, :password)";
+			$sql2 = "INSERT INTO huiswerkheroes (fullname, email, username, 'password') VALUES (:naam, :email, :username, :password)";
 			$statement = $this->db->prepare($sql2); //stuur naar mysql.
 			$statement->bindParam(":naam", $naam );
             $statement->bindParam(":email", $email);
