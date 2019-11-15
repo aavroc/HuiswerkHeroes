@@ -7,6 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script>
+        //function for buttons to link
+        function link(page)
+        {
+            window.location.href = page;
+        }
+    </script>
 
 </head>
 <body>
@@ -21,6 +28,7 @@
                 <a href="">Wat wij doen</a>
                 <a href="">Over ons</a>
                 <a href="">Contact</a>
+                <a href="rotary php/login.php">Login</a>
                
 
 
@@ -36,7 +44,7 @@
         <div class="section-1-text">
             <h1>Welkom bij Huiswerk Heroes!</h1>
             <h3>Meld je nu aan en krijg bijles!</h3>
-            <button class="button-register">Registreer</button>
+            <button class="button-register" onclick="link('rotary php/register.php')">Registreer</button>
         </div>
 
     </div>

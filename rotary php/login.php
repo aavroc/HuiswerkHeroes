@@ -1,50 +1,69 @@
 <?php
 	require 'config.php';
 
-	if(isset($_POST['login'])) {
+	if(isset($_POST['login'])) 
+	{
 		$errMsg = '';
 
 		// Get data from FORM
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		if($username == '')
-			$errMsg = 'Enter username';
-		if($password == '')
-			$errMsg = 'Enter password';
-
-		if($errMsg == '') {
-			try {
+		// check if fields are set
+		if(empty($username) || empty($password))
+		{
+			$errMsg = 'Alle velden moeten ingevuld worden.';
+		} 
+		else
+		{
+			try
+			{
+				// SQL query for login. Also grabs data that will later be used into sessions.
+				$sql = 'SELECT * FROM pdo  WHERE username = :gebruikersnaam AND password = :wachtwoord';
+				$statement = $connect->prepare($sql);
+				$statement->bindParam(":gebruikersnaam", $username);
+				$statement->bindParam(":wachtwoord", $password);
+				$statement->execute();
+				$database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC); 
+				if($database_gegevens == FALSE)
+				{
+					header("location: login.php?error=dbconnFailed");
+					exit();
 				
-				$stmt = $connect->prepare('SELECT id, fullname, username, password, secretpin, niveau FROM pdo WHERE username = :username');
-				$stmt->execute(array(
-					':username' => $username
-					
-					));
-				$data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-				if($data == false){
-					$errMsg = "User $username not found.";
 				}
-				else {
-					if($password == $data['password']) {
-						$_SESSION['fullname'] = $data['fullname'];
-						$_SESSION['niveau'] = ($data['niveau']);
-						$_SESSION['username'] = $data['username'];
-						$_SESSION['password'] = $data['password'];
-						$_SESSION['secretpin'] = $data['secretpin'];
+				else
+				{
+					$passcheck = password_verify($password, $row['password']);
+					if($passcheck == FALSE)
+					{
+						header("location: login.php?error=wrongPass");
+						exit();
+					}
+					else if($passcheck == TRUE && $username == $row['username'])
+					{
+						session_start();
+						$_SESSION['name'] = $row['fullname'];
+						$_SESSION['username'] = $row['username'];
+						$_SESSION['niveau'] = $row['niveau'];
+						$_SESSION['id'] = $row['id'];
 
-						header('Location: dashboard.php');
-						exit;
+						header("dashboard.php?login=succes");
+						exit();
 					}
 					else
-						$errMsg = 'Password not match.';
+					{
+						header("location: login.php?error=wrongPass");
+						exit();
+					}
+					
 				}
 			}
-			catch(PDOException $e) {
-				$errMsg = $e->getMessage();
+			catch(PDOException $e)
+			{
+				echo $e->getMessage();
 			}
 		}
+		
 	}
 ?>
 
@@ -67,8 +86,8 @@
 			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
 			<div style="margin: 15px">
 				<form action="" method="post">
-					<input type="text" name="username" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
-					<input type="password" name="password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" /><br/><br />
+					<input type="text" name="username" placeholder="Gebruikersnaam" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
+					<input type="password" name="password" placeholder="Wachtwoord" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" /><br/><br />
 					<input type="submit" name='login' value="Login" class='submit'/><br />
 				</form>
 			</div>

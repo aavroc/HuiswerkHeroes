@@ -1,5 +1,5 @@
 <?php
-	require 'db_config.php';
+	require 'config.php';
 
 	if(isset($_POST['register'])) {
 		$errMsg = '';
@@ -7,7 +7,7 @@
 
 
 
-		// Get data from FROM
+		// Get data from register form
 		$fullname = $_POST['fullname'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -15,34 +15,45 @@
 		
 
 
+		// check if every field is not empty
+		if(empty($fullname) || empty($username) || empty($password) || empty($niveau))
+		{
+			//redirect to the same page, but put filled in values in URL. 
+			header("location:register.php?error=emptyfield&fullname=" .$fullname. "&username=" . $username);
+			$errMsg = "Alle velden moeten ingevuld worden";
+			exit();
+		}
+		//check for invalid username
+		else if(!preg_match("/^[a-zA-Z0-9]*$/", $username))
+		{
+			header("location:register.php?error=invalidPasswordd&fullname=" .$fullname);
+			$errMsg = "gebruikersnaam voldoet niet aan criteria.";
+			exit();
+		}
 
-		if($fullname == '')
-			$errMsg = 'Enter your fullname';
-		if($username == '')
-			$errMsg = 'Enter username';
-		if($password == '')
-			$errMsg = 'Enter password';
-			if($niveau == '')
-			$errMsg = 'Enter nivaeu';
-
-
-			$username_stmt = $connect->prepare("SELECT * from pdo WHERE username=?");
+		else
+		{
+			$username_stmt = $connect->prepare("SELECT * FROM pdo WHERE username=?");
 			$username_stmt->execute(array($username));
 			$result = $username_stmt->fetchAll();
 			if (!empty($result) ) {
 			$errMsg='Username is already taken please choose another one';
 			}
 		
+		
 			
 	
 
 		if($errMsg == ''){
 			try {
+				//hashing password
+				$hashedPass = password_hash($password, PASSWORD_DEFAULT);
+				//SQL INSERT
 				$stmt = $connect->prepare('INSERT INTO pdo (fullname, username, password, niveau) VALUES (:fullname, :username, :password, :niveau)');
 				$stmt->execute(array(
 					':fullname' => $fullname,
 					':username' => $username,
-					':password' => $password,
+					':password' => $hashedPass,
 					':niveau' => $niveau
 					));
 
@@ -63,6 +74,7 @@
 			}
 		}
 	}
+}
 
 	if(isset($_GET['action']) && $_GET['action'] == 'joined') {
 		$errMsg = 'Registration successfull. Now you can <a href="login.php">login</a>';
