@@ -11,6 +11,8 @@ define('dbname', 'huiswerkheroes');
 try {
 	$connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
 	$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// catching exception errors
 }
 catch(PDOException $e) {
 	echo $e->getMessage();
