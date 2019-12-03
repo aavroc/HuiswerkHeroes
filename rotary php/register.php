@@ -1,20 +1,15 @@
 <?php
 	require 'config.php';
 
-	if(isset($_POST['register'])) {
+	if(isset($_POST['register'])) 
+	{
 		$errMsg = '';
-		
-
-
-
 		// Get data from register form
 		$fullname = $_POST['fullname'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$niveau = $_POST['niveau'];
 		
-
-
 		// check if every field is not empty
 		if(empty($fullname) || empty($username) || empty($password) || empty($niveau))
 		{
@@ -23,6 +18,7 @@
 			$errMsg = "Alle velden moeten ingevuld worden";
 			exit();
 		}
+
 		//check for invalid username
 		else if(!preg_match("/^[a-zA-Z0-9]*$/", $username))
 		{
@@ -40,51 +36,44 @@
 			$errMsg='Username is already taken please choose another one';
 			}
 		
-		
-			
-	
+		if($errMsg == '')
+		{
+			try 
+			{
+			//hashing password
+			$hashedPass = password_hash($password, PASSWORD_DEFAULT);
+			//SQL INSERT
+			$stmt = $connect->prepare('INSERT INTO pdo (fullname, username, password, niveau) VALUES (:fullname, :username, :password, :niveau)');
+			$stmt->execute(array(
+				':fullname' => $fullname,
+				':username' => $username,
+				':password' => $hashedPass,
+				':niveau' => $niveau
+			));
 
-		if($errMsg == ''){
-			try {
-				//hashing password
-				$hashedPass = password_hash($password, PASSWORD_DEFAULT);
-				//SQL INSERT
-				$stmt = $connect->prepare('INSERT INTO pdo (fullname, username, password, niveau) VALUES (:fullname, :username, :password, :niveau)');
-				$stmt->execute(array(
-					':fullname' => $fullname,
-					':username' => $username,
-					':password' => $hashedPass,
-					':niveau' => $niveau
-					));
-
-
-			
-
-
-			
-		
-
-				header('Location: register.php?action=joined');
-
-
-				exit;
+			header('Location: register.php?action=joined');
+			exit();
 			}
-			catch(PDOException $e) {
+
+			catch(PDOException $e) 
+			{
 				echo $e->getMessage();
 			}
 		}
 	}
 }
 
-	if(isset($_GET['action']) && $_GET['action'] == 'joined') {
-		$errMsg = 'Registration successfull. Now you can <a href="login.php">login</a>';
-	}
+if(isset($_GET['action']) && $_GET['action'] == 'joined') 
+{
+	$errMsg = 'Registration successfull. Now you can <a href="login.php">login</a>';
+}
 ?>
 
 <html>
 <head><title>Register</title></head>
 	<style>
-	html, body {
+	html, body 
+	{
 		margin: 1px;
 		border: 0;
 	}
@@ -93,7 +82,8 @@
 	<div align="center">
 		<div style=" border: solid 1px #006D9C; " align="left">
 			<?php
-				if(isset($errMsg)){
+				if(isset($errMsg))
+				{
 					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 				}
 			?>
@@ -109,10 +99,8 @@
 						  <option value="2">niveau-2</option>
 						  <option value="3">niveau-3</option>
 						  <option value="4">niveau-4</option>
-
-  						
+						  
 					</select>
-					
 					
 					<input type="submit" name='register' value="Register" class='submit'/><br />
 				</form>

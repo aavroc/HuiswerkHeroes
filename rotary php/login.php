@@ -5,7 +5,7 @@
 	{
 		$errMsg = '';
 
-		// Get data from FORM
+		//Alles wat in de post gestopt wordt (wat je in de forms invult) wordt in de var gestopt
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
@@ -24,21 +24,24 @@
 				$statement->bindParam(":gebruikersnaam", $username);
 				$statement->bindParam(":wachtwoord", $password);
 				$statement->execute();
-				$database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC); 
+				$database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 				if($database_gegevens == FALSE)
 				{
 					header("location: login.php?error=dbconnFailed");
 					exit();
-				
 				}
+
 				else
 				{
 					$passcheck = password_verify($password, $row['password']);
+
 					if($passcheck == FALSE)
 					{
 						header("location: login.php?error=wrongPass");
 						exit();
 					}
+
 					else if($passcheck == TRUE && $username == $row['username'])
 					{
 						session_start();
@@ -50,6 +53,7 @@
 						header("dashboard.php?login=succes");
 						exit();
 					}
+
 					else
 					{
 						header("location: login.php?error=wrongPass");
@@ -62,15 +66,15 @@
 			{
 				echo $e->getMessage();
 			}
-		}
-		
+		}	
 	}
 ?>
 
 <html>
 <head><title>Login</title></head>
 	<style>
-	html, body {
+	html, body 
+	{
 		margin: 1px;
 		border: 0;
 	}
