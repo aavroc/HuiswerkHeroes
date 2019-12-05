@@ -9,6 +9,8 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
+		var_dump($username);
+
 		// check if fields are set
 		if(empty($username) || empty($password))
 		{
@@ -19,12 +21,14 @@
 			try
 			{
 				// SQL query for login. Also grabs data that will later be used into sessions.
-				$sql = 'SELECT * FROM pdo  WHERE username = :gebruikersnaam AND password = :wachtwoord';
+				$sql = "SELECT * FROM user WHERE username = :gebruikersnaam";
 				$statement = $connect->prepare($sql);
 				$statement->bindParam(":gebruikersnaam", $username);
-				$statement->bindParam(":wachtwoord", $password);
+				// $statement->bindParam(":wachtwoord", $password);
 				$statement->execute();
-				$database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC); 
+				
+				$database_gegevens = $statement->fetch(PDO::FETCH_ASSOC); 
+				var_dump($database_gegevens);
 				if($database_gegevens == FALSE)
 				{
 					header("location: login.php?error=dbconnFailed");
@@ -33,26 +37,27 @@
 				}
 				else
 				{
-					$passcheck = password_verify($password, $row['password']);
+					// dycrepe password and check if it's the same.
+					$passcheck = password_verify($password, $database_gegevens['password']);
 					if($passcheck == FALSE)
 					{
 						header("location: login.php?error=wrongPass");
 						exit();
 					}
-					else if($passcheck == TRUE && $username == $row['username'])
+					else if($passcheck == TRUE && $username == $database_gegevens['username'])
 					{
-						session_start();
-						$_SESSION['name'] = $row['fullname'];
-						$_SESSION['username'] = $row['username'];
-						$_SESSION['niveau'] = $row['niveau'];
-						$_SESSION['id'] = $row['id'];
+						$_SESSION['name'] = $database_gegevens['fullname'];
+						$_SESSION['username'] = $database_gegevens['username'];
+						$_SESSION['niveau'] = $database_gegevens['niveau'];
+						$_SESSION['id'] = $database_gegevens['id'];
 
-						header("dashboard.php?login=succes");
+						header("location: dashboard.php?login=succes");
 						exit();
 					}
 					else
 					{
-						header("location: login.php?error=wrongPass");
+						
+						// header("location: login.php?error=wrongPass");
 						exit();
 					}
 					
