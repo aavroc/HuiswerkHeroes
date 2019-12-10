@@ -5,7 +5,7 @@ session_start();
 define('dbhost', 'localhost');
 define('dbuser', 'root');
 define('dbpass', '');
-define('dbname', 'huiswerkheroes');
+define('dbname', 'rotary_huiswerkheroes');
 
 // Connecting database
 try 

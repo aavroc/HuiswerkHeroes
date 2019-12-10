@@ -29,30 +29,41 @@
 
 		else
 		{
-			$username_stmt = $connect->prepare("SELECT * FROM pdo WHERE username=?");
+			$username_stmt = $connect->prepare("SELECT * FROM user WHERE username=?");
 			$username_stmt->execute(array($username));
 			$result = $username_stmt->fetchAll();
 			if (!empty($result) ) {
 			$errMsg='Username is already taken please choose another one';
 			}
 		
-		if($errMsg == '')
-		{
-			try 
-			{
-			//hashing password
-			$hashedPass = password_hash($password, PASSWORD_DEFAULT);
-			//SQL INSERT
-			$stmt = $connect->prepare('INSERT INTO pdo (fullname, username, password, niveau) VALUES (:fullname, :username, :password, :niveau)');
-			$stmt->execute(array(
-				':fullname' => $fullname,
-				':username' => $username,
-				':password' => $hashedPass,
-				':niveau' => $niveau
-			));
+		
+			
+	
 
-			header('Location: register.php?action=joined');
-			exit();
+		if($errMsg == ''){
+			try {
+				//hashing password
+				$hashedPass = password_hash($password, PASSWORD_DEFAULT);
+				//SQL INSERT
+				$stmt = $connect->prepare('INSERT INTO user (fullname, username, password, niveau) VALUES (:fullname, :username, :password, :niveau)');
+				$stmt->execute(array(
+					':fullname' => $fullname,
+					':username' => $username,
+					':password' => $hashedPass,
+					':niveau' => $niveau
+					));
+
+
+			
+
+
+			
+		
+
+				header('Location: register.php?action=joined');
+
+
+				exit;
 			}
 
 			catch(PDOException $e) 
