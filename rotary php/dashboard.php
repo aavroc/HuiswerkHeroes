@@ -1,7 +1,7 @@
 <?php
 	require 'config.php';
 
-	if(empty($_SESSION['fullname']))
+	if(empty($_SESSION['username']))
 		header('Location: login.php');
 		
 	
@@ -73,7 +73,7 @@ if(isset($_POST['aanvragen'])){
 
 			<div align="right" class="navbar-dashboard">
 			<b class="niveau-style">jou niveau:  <?php echo $_SESSION['niveau']; ?></b> 
-				<b> Welkom <?php echo $_SESSION['fullname']; ?></b>
+				<b> Welkom <?php echo $_SESSION['username']; ?></b>
 				<a href="logout.php">Logout</a>
 				<a href="update.php">Edit profile</a> <br>
 			</div>

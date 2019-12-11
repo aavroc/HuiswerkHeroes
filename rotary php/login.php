@@ -1,6 +1,7 @@
 <?php
 	require 'config.php';
 
+//checked if you pressed on login
 	if(isset($_POST['login'])) 
 	{
 		$errMsg = '';
@@ -9,7 +10,6 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		var_dump($username);
 
 		// check if fields are set
 		if(empty($username) || empty($password))
@@ -24,11 +24,9 @@
 				$sql = "SELECT * FROM user WHERE username = :gebruikersnaam";
 				$statement = $connect->prepare($sql);
 				$statement->bindParam(":gebruikersnaam", $username);
-				// $statement->bindParam(":wachtwoord", $password);
 				$statement->execute();
 				
 				$database_gegevens = $statement->fetch(PDO::FETCH_ASSOC); 
-				var_dump($database_gegevens);
 				if($database_gegevens == FALSE)
 				{
 					header("location: login.php?error=dbconnFailed");
@@ -37,14 +35,14 @@
 				}
 				else
 				{
-					// dycrepe password and check if it's the same.
+					// password and hashed password check if it's the same.
 					$passcheck = password_verify($password, $database_gegevens['password']);
 					if($passcheck == FALSE)
 					{
-						header("location: login.php?error=wrongPass");
+						header("location: login.php?error=invalidLogin");
 						exit();
 					}
-					else if($passcheck == TRUE && $username == $database_gegevens['username'])
+					else if($passcheck == TRUE && $username = $database_gegevens['username'])
 					{
 						$_SESSION['name'] = $database_gegevens['fullname'];
 						$_SESSION['username'] = $database_gegevens['username'];
@@ -57,7 +55,7 @@
 					else
 					{
 						
-						// header("location: login.php?error=wrongPass");
+						header("location: login.php?error=invalidData");
 						exit();
 					}
 					
