@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 05 dec 2019 om 19:22
+-- Gegenereerd op: 11 dec 2019 om 15:16
 -- Serverversie: 10.1.37-MariaDB
 -- PHP-versie: 7.3.1
 
@@ -43,18 +43,20 @@ CREATE TABLE `aanvraag` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `fullname` varchar(60) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(60) NOT NULL,
-  `niveau` int(4) NOT NULL
+  `email` text NOT NULL,
+  `fullname` text NOT NULL,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `niveau` int(4) NOT NULL,
+  `rol` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `user`
 --
 
-INSERT INTO `user` (`id`, `fullname`, `username`, `password`, `niveau`) VALUES
-(1, 'Dave Schaatsbergen', 'Nethertale', '$2y$10$OZRpZ0XSkcbvP5PAAycKdORv7uEtfg8wD2.kKmtf./rIFSjeumsBK', 3);
+INSERT INTO `user` (`id`, `email`, `fullname`, `username`, `password`, `niveau`, `rol`) VALUES
+(4, 'd.bergen@hotmail.nl', 'Dave Schaatsbergen', 'nethertale', '$2y$10$uQdwIesZ9H5oX9YgQXAl7ueK956AUhpOMtspQ11tdyskWygDWWPES', 3, 'leerling');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -86,7 +88,7 @@ ALTER TABLE `aanvraag`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
