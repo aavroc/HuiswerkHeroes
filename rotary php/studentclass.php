@@ -52,13 +52,30 @@ class User
     public function register($naam, $email, $username, $password)
 	{
 	        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
-			$sql2 = "INSERT INTO pdo (fullname, email, username, 'password') VALUES (:naam, :email, :username, :password)";
+			$sql2 = "INSERT INTO pdo (voornaam, email, username, password) VALUES (:naam, :email, :username, :pass)";
 			$statement = $this->db->prepare($sql2); //stuur naar mysql.
 			$statement->bindParam(":naam", $naam );
             $statement->bindParam(":email", $email);
             $statement->bindParam(":username", $username);
-			$statement->bindParam(":password", $password);
+			$statement->bindParam(":pass", $password);
 			$statement->execute();
-	}
+    }
+    public function update($naam, $email, $password, $niveau)
+	{
+	        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
+			$sql2 = "UPDATE huiswerkheroes SET voornaam=:voornaam, email=:email, password=:pass, niveau=:niveau WHERE id={$_SESSION['user']})";
+			$statement = $this->db->prepare($sql2); //stuur naar mysql.
+			$statement->bindParam(":voornaam", $naam );
+            $statement->bindParam(":email", $email);
+            $statement->bindParam(":pass", $password);
+			$statement->bindParam(":niveau", $niveau);
+			$statement->execute();
+    }
+    public function logout(){
+        //log uit functie. maakt een einde aan de session waar alle waardes instaan van de ingelogte gebruiker.
+        session_start();
+        session_destroy();
+        echo 'je bent uitgelogt. <a href="login.php">Ga terug</a>';
+    }
 }
 ?>
