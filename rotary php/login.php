@@ -57,7 +57,6 @@
 
 					else
 					{
-						
 						// header("location: login.php?error=wrongPass");
 						exit();
 					}

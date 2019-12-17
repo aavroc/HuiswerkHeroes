@@ -55,48 +55,26 @@ $password = "";
         $uitgever = $_POST['uitgever'];
         $Voorraad = $_POST['voorraad'];
         $prijs = $_POST['prijs'];
-      
 
-
-    
         $updateValue = $conn->prepare("UPDATE producten SET titel  = :titel, uitgever = :uitgever, voorraad = :voorraad, prijs = :prijs WHERE game_id = :game_id");
-
-
-
-
-
-
 
         // $updateValue = $conn->prepare("INSERT INTO producten(titel, uitgever, voorraad) VALUES (:titel, :uitgever, :voorraad)");
 
-
-
-        
-
-        
-        
         $updateValue->bindParam("titel", $titel);
         $updateValue->bindParam("uitgever", $uitgever);
         $updateValue->bindParam("voorraad", $Voorraad);
         $updateValue->bindParam("prijs", $prijs);
         $updateValue->bindParam('game_id', $_GET['game_id']);
-       
-       
 
-
-
-        if ($updateValue->execute()) {
-
+        if ($updateValue->execute()) 
+        {
             echo "data is aangepast";
-        
         }
 
-        else{
+        else
+        {
             echo "data is niet aangepast";
         }
-
-
-    
     }
 
     $Voorraad = "SELECT * FROM producten";

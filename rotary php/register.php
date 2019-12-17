@@ -36,10 +36,6 @@
 			$errMsg='Username is already taken please choose another one';
 			}
 		
-		
-			
-	
-
 		if($errMsg == ''){
 			try {
 				//hashing password
@@ -52,17 +48,7 @@
 					':password' => $hashedPass,
 					':niveau' => $niveau
 					));
-
-
-			
-
-
-			
-		
-
 				header('Location: register.php?action=joined');
-
-
 				exit;
 			}
 
