@@ -8,7 +8,6 @@
 </head>
 <body>
     
-
 <h1>test</h1>
 <form method="post" action="">
 
@@ -18,7 +17,6 @@
     <label>uitgever</label>
     <input type="text" name="uitgever"><br>
     
-    
     <label>voorraad</label>
     <input type="number" name="voorraad"><br>
 
@@ -26,11 +24,7 @@
     <input type="text" name="prijs"><br>
 
     <input type="submit" name="verzenden">
-
     </form>
-
-
-
 </body>
 </html>
 
@@ -46,8 +40,6 @@ $password = "";
 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully"; 
-
-
 
     if (isset($_POST['verzenden'])) {
 
@@ -83,18 +75,5 @@ $password = "";
     foreach ($resultVoorraad as $row) {
         echo $row['titel'] . "<br>";
     }
-
-   
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

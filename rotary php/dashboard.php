@@ -16,8 +16,10 @@ if(isset($_POST['aanvragen']))
 	 
 	 if($voornaam == '')
 	 $errorMsg = 'Enter your fullname';
- if($achternaam == '')
+	 
+ 	if($achternaam == '')
 	 $errorMsg = 'Enter username';
+
 	if($vak == '')
 	 $errorMsg = 'Enter je vak';
 
