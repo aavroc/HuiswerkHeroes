@@ -1,12 +1,9 @@
 <?php
 	require 'config.php';
 
-	if(isset($_POST['register'])) {
+	if(isset($_POST['register'])) 
+	{
 		$errMsg = '';
-		
-
-
-
 		// Get data from register form
 		$mail = $_POST['email'];
 		$fullname = $_POST['fullname'];
@@ -15,8 +12,6 @@
 		$niveau = $_POST['niveau'];
 		$rol = $_POST['rol'];
 		
-
-
 		// check if every field is not empty
 		if(empty($mail) || empty($fullname) || empty($username) || empty($password) || empty($niveau) || empty($rol))
 		{
@@ -42,10 +37,6 @@
 			$errMsg='Username/email is already taken please choose another one';
 			}
 		
-		
-			
-	
-
 		if($errMsg == ''){
 			try {
 				//hashing password
@@ -60,35 +51,29 @@
 					':niveau' => $niveau,
 					':rol' => $rol,
 					));
-
-
-			
-
-
-			
-		
-
 				header('Location: register.php?action=joined');
-
-
 				exit;
 			}
-			catch(PDOException $e) {
+
+			catch(PDOException $e) 
+			{
 				echo $e->getMessage();
 			}
 		}
 	}
 }
 
-	if(isset($_GET['action']) && $_GET['action'] == 'joined') {
-		$errMsg = 'Registration successfull. Now you can <a href="login.php">login</a>';
-	}
+if(isset($_GET['action']) && $_GET['action'] == 'joined') 
+{
+	$errMsg = 'Registration successfull. Now you can <a href="login.php">login</a>';
+}
 ?>
 
 <html>
 <head><title>Register</title></head>
 	<style>
-	html, body {
+	html, body 
+	{
 		margin: 1px;
 		border: 0;
 	}
@@ -97,7 +82,8 @@
 	<div align="center">
 		<div style=" border: solid 1px #006D9C; " align="left">
 			<?php
-				if(isset($errMsg)){
+				if(isset($errMsg))
+				{
 					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
 				}
 			?>

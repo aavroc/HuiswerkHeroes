@@ -6,7 +6,7 @@
 	{
 		$errMsg = '';
 
-		// Get data from FORM
+		//Alles wat in de post gestopt wordt (wat je in de forms invult) wordt in de var gestopt
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
@@ -31,8 +31,8 @@
 				{
 					header("location: login.php?error=dbconnFailed");
 					exit();
-				
 				}
+
 				else
 				{
 					// password and hashed password check if it's the same.
@@ -52,10 +52,10 @@
 						header("location: dashboard.php?login=succes");
 						exit();
 					}
+
 					else
 					{
-						
-						header("location: login.php?error=invalidData");
+						// header("location: login.php?error=wrongPass");
 						exit();
 					}
 					
@@ -65,15 +65,15 @@
 			{
 				echo $e->getMessage();
 			}
-		}
-		
+		}	
 	}
 ?>
 
 <html>
 <head><title>Login</title></head>
 	<style>
-	html, body {
+	html, body 
+	{
 		margin: 1px;
 		border: 0;
 	}
