@@ -1,38 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script>
-        //function for buttons to link
-        function link(page)
-        {
-            window.location.href = page;
-        }
-    </script>
-
-</head>
 <body>
+    
 
 <!-- viewport 1 eerste pagina slide -->
     <div class="viewport-1">
-       
-       
-  
-            <nav class="navbar">    
-                <a href="">Home</a>
-                <a href="#wwdHeader">Wat wij doen</a>
-                <a href="">Over ons</a>
-                <a href="">Contact</a>
-                <a href="rotary php/login.php">Login</a>
-               
+        
+        <?php include 'rotary php\header.php'; ?>
 
-
-            </nav>
             <div class="container-hamburger">
         
                     <div class="hamburger-icon"></div>
@@ -56,5 +30,6 @@
 
         </div>
     </div>
+    <?php include 'rotary php\footer.php'; ?>
 </body>
 </html>

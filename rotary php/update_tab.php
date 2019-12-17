@@ -8,7 +8,6 @@
 </head>
 <body>
     
-
 <h1>test</h1>
 <form method="post" action="">
 
@@ -18,7 +17,6 @@
     <label>uitgever</label>
     <input type="text" name="uitgever"><br>
     
-    
     <label>voorraad</label>
     <input type="number" name="voorraad"><br>
 
@@ -26,11 +24,7 @@
     <input type="text" name="prijs"><br>
 
     <input type="submit" name="verzenden">
-
     </form>
-
-
-
 </body>
 </html>
 
@@ -47,56 +41,32 @@ $password = "";
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully"; 
 
-
-
     if (isset($_POST['verzenden'])) {
 
         $titel = $_POST['titel'];
         $uitgever = $_POST['uitgever'];
         $Voorraad = $_POST['voorraad'];
         $prijs = $_POST['prijs'];
-      
 
-
-    
         $updateValue = $conn->prepare("UPDATE producten SET titel  = :titel, uitgever = :uitgever, voorraad = :voorraad, prijs = :prijs WHERE game_id = :game_id");
-
-
-
-
-
-
 
         // $updateValue = $conn->prepare("INSERT INTO producten(titel, uitgever, voorraad) VALUES (:titel, :uitgever, :voorraad)");
 
-
-
-        
-
-        
-        
         $updateValue->bindParam("titel", $titel);
         $updateValue->bindParam("uitgever", $uitgever);
         $updateValue->bindParam("voorraad", $Voorraad);
         $updateValue->bindParam("prijs", $prijs);
         $updateValue->bindParam('game_id', $_GET['game_id']);
-       
-       
 
-
-
-        if ($updateValue->execute()) {
-
+        if ($updateValue->execute()) 
+        {
             echo "data is aangepast";
-        
         }
 
-        else{
+        else
+        {
             echo "data is niet aangepast";
         }
-
-
-    
     }
 
     $Voorraad = "SELECT * FROM producten";
@@ -105,18 +75,5 @@ $password = "";
     foreach ($resultVoorraad as $row) {
         echo $row['titel'] . "<br>";
     }
-
-   
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

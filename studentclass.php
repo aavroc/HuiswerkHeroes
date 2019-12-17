@@ -1,7 +1,7 @@
 <?php 
 class User
 {
-	protected $db;
+    protected $db;
 	protected $message = '';
 	
 	//construct voor database inloggegevens variabelen
@@ -9,7 +9,7 @@ class User
 	{
 		$user = 'root';
 		$pass = '';
-		$this->db = new PDO('mysql:host=localhost;dbname=huiswerkheroes', $user, $pass);
+		$this->db = new PDO('mysql:host=localhost;dbname=rotary', $user, $pass);
 
     }
     public function getMessage()
@@ -19,12 +19,12 @@ class User
     public function login($email_form, $password_form)
     {
         //query die de gegevens na leest
-        $sql = "SELECT * FROM pdo WHERE 'username' = :username AND 'password' = :pass";
+        $sql = "SELECT * FROM huiswerkheroes WHERE email = :email AND password = :pass";
         $statement = $this->db->prepare($sql);
-        $statement->bindParam(":username", $email_form);
+        $statement->bindParam(":email", $email_form);
         $statement->bindParam(":pass", $password_form);
         $statement->execute();
-        $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
+        $database_gegevens = $statement->fetchALL(PDO::FETCH_ASSOC);
 
         
 
@@ -38,7 +38,7 @@ class User
                 session_start();
                 
                 $_SESSION["user"] = $database_gegevens['id'];
-                $_SESSION["email"] = $database_gegevens['username'];
+                $_SESSION["email"] = $database_gegevens['email'];
                 $_SESSION["status"] = TRUE;
                 
                 //stuurt de gebruiker door naar de stellingen pagina
@@ -52,13 +52,24 @@ class User
     public function register($naam, $email, $username, $password)
 	{
 	        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
-			$sql2 = "INSERT INTO huiswerkheroes (fullname, email, username, 'password') VALUES (:naam, :email, :username, :password)";
+			$sql2 = "INSERT INTO pdo (voornaam, email, username, password) VALUES (:naam, :email, :username, :pass)";
 			$statement = $this->db->prepare($sql2); //stuur naar mysql.
 			$statement->bindParam(":naam", $naam );
             $statement->bindParam(":email", $email);
             $statement->bindParam(":username", $username);
-			$statement->bindParam(":password", $password);
+			$statement->bindParam(":pass", $password);
 			$statement->execute();
-	}
+    }
+    public function update($naam, $email, $password, $niveau)
+	{
+	        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
+			$sql2 = "UPDATE huiswerkheroes SET voornaam=:voornaam, email=:email, password=:pass, niveau=:niveau WHERE id={$_SESSION['user']})";
+			$statement = $this->db->prepare($sql2); //stuur naar mysql.
+			$statement->bindParam(":voornaam", $naam );
+            $statement->bindParam(":email", $email);
+            $statement->bindParam(":pass", $password);
+			$statement->bindParam(":niveau", $niveau);
+			$statement->execute();
+    }
 }
 ?>
