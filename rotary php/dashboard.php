@@ -9,7 +9,7 @@
 
 
 
-
+	
 		
 ?>
 
@@ -156,7 +156,7 @@ body {
 }
 
 .log-in-text {
-    margin font-size: 25px;
+    font-size: 25px;
 
 }
 
