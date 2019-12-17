@@ -1,7 +1,7 @@
 <?php
 	require 'config.php';
 
-	if(empty($_SESSION['fullname']))
+	if(empty($_SESSION['username']))
 		header('Location: login.php');
 		
 	
