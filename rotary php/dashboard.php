@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 require 'config.php';
 if (empty($_SESSION['fullname']))
@@ -274,6 +275,8 @@ if (isset($_POST['aanvragen'])) {
 </body>
 
 =======
+=======
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 <?php
 	require 'config.php';
 
@@ -569,5 +572,8 @@ function closeModal()
 </script>
 </body>
 
+<<<<<<< HEAD
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
+=======
 >>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 </html>

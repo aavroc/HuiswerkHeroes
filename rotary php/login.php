@@ -6,6 +6,7 @@ if (isset($_POST['login'])) {
 	$errMsg = '';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//Alles wat in de post gestopt wordt (wat je in de forms invult) wordt in de var gestopt
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -49,6 +50,8 @@ if (isset($_POST['login'])) {
 			echo $e->getMessage();
 		}
 =======
+=======
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 		// Get data from FORM
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -110,6 +113,9 @@ if (isset($_POST['login'])) {
 			}
 		}
 		
+<<<<<<< HEAD
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
+=======
 >>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 	}
 }
@@ -134,6 +140,9 @@ if (isset($_POST['login'])) {
         </form>
 	<!-- <style>
 	html, body {
+<<<<<<< HEAD
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
+=======
 >>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 		margin: 1px;
 		border: 0;
@@ -143,6 +152,7 @@ if (isset($_POST['login'])) {
 <body>
 	<div align="center">
 		<div style=" border: solid 1px #006D9C; " align="left">
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<?php
 			if (isset($errMsg)) {
@@ -160,6 +170,12 @@ if (isset($_POST['login'])) {
 			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
 			<div style="margin: 15px">
 				<form action="" method="post">
+=======
+			
+			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
+			<div style="margin: 15px">
+				<form action="" method="post">
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 <<<<<<< HEAD
 					<input type="text" name="username" value="username" autocomplete="off" class="box"/><br /><br />
 					<input type="password" name="password" value="password" autocomplete="off" class="box" /><br/><br />
@@ -175,8 +191,13 @@ if (isset($_POST['login'])) {
 	</div> -->
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 </html>
+=======
+</html>
+<?php echo $user->getMessage();?>
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 =======
 </html>
 <?php echo $user->getMessage();?>

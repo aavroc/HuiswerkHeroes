@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 require 'config.php';
 
@@ -115,6 +116,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'joined') {
 
 </html>
 =======
+=======
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
 <?php
 	require 'config.php';
 
@@ -250,4 +253,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'joined') {
 	</div>
 </body>
 </html>
+<<<<<<< HEAD
+>>>>>>> f916736240229d922ea969ebb99f15858b156f2c
+=======
 >>>>>>> f916736240229d922ea969ebb99f15858b156f2c
