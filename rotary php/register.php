@@ -60,17 +60,7 @@
 					':niveau' => $niveau,
 					':rol' => $rol,
 					));
-
-
-			
-
-
-			
-		
-
 				header('Location: register.php?action=joined');
-
-
 				exit;
 			}
 			catch(PDOException $e) {
@@ -96,7 +86,7 @@
 		<div class="opacityLayer">
 			<?php
 				if(isset($errMsg)){
-					echo '<div class="messageError">'.$errMsg.'</div>';
+					echo '<div class="messageError registerError">'.$errMsg.'</div>';
 				}
 			?>
 			<div class="formContainer">

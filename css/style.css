@@ -154,6 +154,11 @@ body {
     font-size:20px;
     transition: 0.2s ease-in-out;
 }
+.formInput:hover
+{
+background: lightgrey;
+border-color: #26A6a6;
+}
 .formSubmit
 {
     background:#26A6A6;
@@ -169,10 +174,12 @@ body {
     outline:none; 
     font-size: 20px;
     color:white; 
+    transition: 0.2s ease-in-out;
 }
 .formSubmit:hover
 {
     Background: #26a691;
+    cursor:pointer;
 }
 #forgottenPass
 {
@@ -238,6 +245,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
+}
+.registerError
+{
+    position: relative;
+    top:275px;
+    color:white;
 }
 
 /* media quesry's for index.php */
