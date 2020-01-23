@@ -113,7 +113,9 @@ class User
                 session_start();
 
                 $_SESSION["user"] = $database_gegevens['id'];
-                $_SESSION["email"] = $database_gegevens['email'];
+                $_SESSION["username"] = $database_gegevens['username'];
+                $_SESSION["niveau"] = $database_gegevens['niveau'];
+                $_SESSION["naam"] = $database_gegevens['fullname'];
                 $_SESSION["status"] = TRUE;
 
                 //stuurt de gebruiker door naar de stellingen pagina
@@ -137,7 +139,14 @@ class User
     public function studentprofielpagina()
     {
         //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
-        $sql2 = "SELECT * FROM user WHERE id = {$_SESSION['user']} AND fullname = {$_SESSION['naam']} AND username = {$_SESSION['username']} AND niveau = {$_SESSION['niveau']}";
+        $sql2 = "SELECT * FROM user WHERE id = {$_SESSION['user']} AND fullname = {$_SESSION['naam']} AND username = {$_SESSION['username']} AND niveau = {$_SESSION['niveau']} AND gebruikerstype = 'student'";
+        $statement = $this->db->prepare($sql2); //stuur naar mysql.
+        $statement->execute();
+    }
+    public function docentprofielpagina()
+    {
+        //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
+        $sql2 = "SELECT * FROM user WHERE id = {$_SESSION['user']} AND fullname = {$_SESSION['naam']} AND username = {$_SESSION['username']} AND niveau = {$_SESSION['niveau']} AND gebruikerstype = 'docent'";
         $statement = $this->db->prepare($sql2); //stuur naar mysql.
         $statement->execute();
     }
