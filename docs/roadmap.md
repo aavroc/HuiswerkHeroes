@@ -8,8 +8,7 @@
     - [Discussie kanalen](#discussie-kanalen)
   - [Milestones](#milestones)
     - [Eerste versie (Fenix) 17 dec 2019](#eerste-versie-fenix-17-dec-2019)
-    - [Tweede versie () 14 jan 2019](#tweede-versie--14-jan-2019)
-    - [Derde versie () 28 jan 2019](#derde-versie--28-jan-2019)
+    - [Tweede versie () 28 jan 2019](#tweede-versie--28-jan-2019)
 ## Project Eisen
 
 Vanuit de opdrachtgever (Rotery Amstelveen) zijn de onderstaande brede functionaliteiten gewenst:  
@@ -64,5 +63,16 @@ Deze versie heeft als doel een framework neer te zetten waarop verder kan worden
 5. Opzetten begin OOP framework tbv reusability en maintainability #4
 6. Uitwerking registratie / authenticatie #3
 
-### Tweede versie () 14 jan 2019
-### Derde versie () 28 jan 2019
+### Tweede versie () 28 jan 2019
+
+In deze versie is de database geupdate met alle entiteiten die nodig zijn voor een eerste werkend versie. Het importeren van de database gaat deels automatisch zodat groepsleden snel een werkende lokale versie kunnen hebben draaien. Het vullen van de database met testgegevens is mogelijk. Er is ook een eerste aanzet gezet in het kunnen aanpassen van de gegevens van een gebruiker wanneer deze is ingelogd en het resetten van een wachtwoord van een gebruiker. De milestone bestaat uit de volgende issues:  
+1. opruimen code: index.html weg #19  
+2. wachtwoord reset link + functionaliteit #18  
+3. opruimen code: style.css in eigen map #17  
+4. profiel pagina aangemaakt #16  
+5. test gegevens database export gemaakt #15  
+6. script gemaakt voor database import #14  
+7. inlog/registratie op OOP manier #13  
+8. vormgeving van inlog/registratie aangepast #12  
+9. bestandsstructuur aangepast #11  
+10. Database aangepast zoals in ERD #10  

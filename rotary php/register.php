@@ -60,17 +60,7 @@
 					':niveau' => $niveau,
 					':rol' => $rol,
 					));
-
-
-			
-
-
-			
-		
-
 				header('Location: register.php?action=joined');
-
-
 				exit;
 			}
 			catch(PDOException $e) {
@@ -86,48 +76,48 @@
 ?>
 
 <html>
-<head><title>Register</title></head>
-	<style>
-	html, body {
-		margin: 1px;
-		border: 0;
-	}
-	</style>
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" type="text/css" href="../css\style.css">
+</head>
+
 <body>
-	<div align="center">
-		<div style=" border: solid 1px #006D9C; " align="left">
+	<div class="bgImg">
+		<div class="opacityLayer">
 			<?php
 				if(isset($errMsg)){
-					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
+					echo '<div class="messageError registerError">'.$errMsg.'</div>';
 				}
 			?>
-			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Register</b></div>
-			<div style="margin: 15px">
-				<form action="" method="post">
-					<input type="email" name="email" placeholder="E-mail" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" autocomplete="off" class="box"/><br /><br />
-					<input type="text" name="fullname" placeholder="Fullname" value="<?php if(isset($_POST['fullname'])) echo $_POST['fullname'] ?>" autocomplete="off" class="box"/><br /><br />
-					<input type="text" name="username" placeholder="Username" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
-					<input type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" class="box" /><br/><br />
-					<!-- select niveau -->
-					<select name="niveau">
-						<option value="">selecteer niveau</option>
-						  <option value="1">niveau-1</option>
-						  <option value="2">niveau-2</option>
-						  <option value="3">niveau-3</option>
-						  <option value="4">niveau-4</option>
-					</select>
-					<br><br>
-
-					<!-- select rol -->
-					<select name="rol">
-						<option value="">Student of Docent?</option>
-						<option value="leerling">Leerling</option>
-						<option value="Docent">Docent</option>
-					</select>
-					<br><br>
-					
-					<input type="submit" name='register' value="Register" class='submit'/><br />
-				</form>
+			<div class="formContainer">
+				<div class="formHeader"><p class="formHeaderText">REGISTER</p></div>
+					<div class="contentReplacer">
+						<form action="" method="post">
+							<input class="formInput" type="email" name="email" placeholder="E-mail" value="<?php if(isset($_POST['email'])) echo $_POST['email'] ?>" autocomplete="off" class="box"/><br /><br />
+							<input class="formInput" type="text" name="fullname" placeholder="Fullname" value="<?php if(isset($_POST['fullname'])) echo $_POST['fullname'] ?>" autocomplete="off" class="box"/><br /><br />
+							<input class="formInput" type="text" name="username" placeholder="Username" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
+							<input class="formInput" type="password" name="password" placeholder="Password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" class="box" /><br/><br />
+							<!-- select niveau -->
+							<div class="SelectContainer">
+								<select name="niveau">
+									<option value="">selecteer niveau</option>
+									<option value="1">niveau-1</option>
+									<option value="2">niveau-2</option>
+									<option value="3">niveau-3</option>
+									<option value="4">niveau-4</option>
+								</select>
+								<br><br>
+								<!-- select rol -->
+								<select name="rol">
+									<option value="">Student of Docent?</option>
+									<option value="leerling">Leerling</option>
+									<option value="Docent">Docent</option>
+								</select>
+								<br><br>
+							</div>
+							<input class="formSubmit registerSubmit" type="submit" name='register' value="Register">
+						</form>
+					</div>
 			</div>
 		</div>
 	</div>

@@ -69,40 +69,33 @@
 		
 	}
 ?>
-
 <html>
-<head><title>Login</title></head>
-	<body>
-	<form method="post">
-              email: <input type="email" name="email" onfocus="this.value=''" value="email"><br>
-              password: <input type="password" name="password" onfocus="this.value=''" value="password"><br>
-            <input type="submit" name="login" class="btn btn-success mt-2" value="login">
-        </form>
-	<!-- <style>
-	html, body {
-		margin: 1px;
-		border: 0;
-	}
-	</style>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="../css\style.css">
+</head>
 <body>
-	<div align="center">
-		<div style=" border: solid 1px #006D9C; " align="left">
-			
-			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
-			<div style="margin: 15px">
-				<form action="" method="post">
-<<<<<<< HEAD
-					<input type="text" name="username" value="username" autocomplete="off" class="box"/><br /><br />
-					<input type="password" name="password" value="password" autocomplete="off" class="box" /><br/><br />
-=======
-					<input type="text" name="username" placeholder="Gebruikersnaam" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
-					<input type="password" name="password" placeholder="Wachtwoord" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" /><br/><br />
->>>>>>> b9365b4c47215e5326dfcf96a76da8c19dd5fc88
-					<input type="submit" name='login' value="Login" class='submit'/><br />
-				</form>
+	<div class="bgImg">
+		<div class="opacityLayer">
+			<?php
+				if(isset($errMsg)){
+					echo '<p class="messageError">'.$errMsg.'</p>';
+				}
+			?>
+			<div class="formContainer">
+				<div class="formHeader"><p class="formHeaderText">LOGIN</p></div>
+					<form action="" method="post">
+						<input class="formInput" type="text" name="username" placeholder="Gebruikersnaam" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
+						<input class="formInput" type="password" name="password" placeholder="Wachtwoord" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" /><br/><br />
+						<input class="formSubmit" type="submit" name='login' value="Login" class='submit'/><br />
+						<a href="#" id="forgottenPass">Wachtwoord vergeten? klik dan hier.</a>
+						<div class="formFooter">
+							<p class="formFooterText">Nog geen account?</p>
+							<a id="signUp"href="register.php">Klik dan hier.</a>
+						</div>
+					</form>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </body>
 </html>
-<?php echo $user->getMessage();?>
