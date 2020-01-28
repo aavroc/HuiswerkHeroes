@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'studentclass.php';
 
 
 if (empty($_SESSION['username']))

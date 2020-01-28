@@ -9,7 +9,7 @@ class User
     {
         $user = 'root';
         $pass = '';
-        $this->db = new PDO('mysql:host=localhost;dbname=rotary', $user, $pass);
+        $this->db = new PDO('mysql:host=localhost;dbname=rotary_huiswerkheroes', $user, $pass);
     }
     public function getMessage()
     {
@@ -19,9 +19,10 @@ class User
     {
         try {
             // SQL query for login. Also grabs data that will later be used into sessions.
-            $sql = "SELECT * FROM user WHERE username = :gebruikersnaam";
+            $sql = "SELECT * FROM user WHERE username = :gebruikersnaam AND password = :pass";
             $statement = $this->db->prepare($sql);
             $statement->bindParam(":gebruikersnaam", $username);
+            $statement->bindParam(":pass", $password_form);
             $statement->execute();
 
             $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
