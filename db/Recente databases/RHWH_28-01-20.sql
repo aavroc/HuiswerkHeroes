@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 28 jan 2020 om 15:34
+-- Gegenereerd op: 28 jan 2020 om 17:15
 -- Serverversie: 10.1.37-MariaDB
 -- PHP-versie: 7.3.1
 
@@ -76,8 +76,8 @@ CREATE TABLE `user` (
   `voornaam` varchar(150) NOT NULL,
   `achternaam` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `gebruikersnaam` varchar(150) NOT NULL,
-  `wachtwoord` varchar(150) NOT NULL
+  `username` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
