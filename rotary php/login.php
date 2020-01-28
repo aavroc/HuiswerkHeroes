@@ -1,20 +1,25 @@
 <?php
-require 'config.php';
+// require 'config.php';
+require 'studentclass.php';
 
+$new_login = new User();
 //checked if you pressed on login
 if (isset($_POST['login'])) {
-	$errMsg = '';
+
 
 	// Get data from FORM
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
+	$new_login->loginstudent($username, $password);
 
+	$errMsg = '';
 	// check if fields are set
 	if (empty($username) || empty($password)) {
 		$errMsg = 'Alle velden moeten ingevuld worden.';
 	}
 }
+
 ?>
 <html>
 

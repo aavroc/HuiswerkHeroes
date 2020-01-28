@@ -24,8 +24,7 @@ class User
             $statement->bindParam(":gebruikersnaam", $username);
             $statement->bindParam(":pass", $password_form);
             $statement->execute();
-
-            $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
+            $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
             if ($database_gegevens == FALSE) {
                 header("location: login.php?error=dbconnFailed");
                 exit();
@@ -36,6 +35,7 @@ class User
                     header("location: login.php?error=invalidLogin");
                     exit();
                 } else if ($passcheck == TRUE && $username = $database_gegevens['username']) {
+                    session_start();
                     $_SESSION['fullname'] = $database_gegevens['fullname'];
                     $_SESSION['username'] = $database_gegevens['username'];
                     $_SESSION['niveau'] = $database_gegevens['niveau'];
