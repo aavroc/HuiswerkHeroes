@@ -15,40 +15,93 @@ class User
     {
         return $this->message;
     }
-    public function loginstudent($email_form, $password_form)
+    public function loginstudent($username, $password_form)
     {
-        //query die de gegevens na leest
-        $sql = "SELECT * FROM huiswerkheroes WHERE email = :email AND password = :pass";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(":email", $email_form);
-        $statement->bindParam(":pass", $password_form);
-        $statement->execute();
-        $database_gegevens = $statement->fetchALL(PDO::FETCH_ASSOC);
+        try {
+            // SQL query for login. Also grabs data that will later be used into sessions.
+            $sql = "SELECT * FROM user WHERE username = :gebruikersnaam";
+            $statement = $this->db->prepare($sql);
+            $statement->bindParam(":gebruikersnaam", $username);
+            $statement->execute();
 
+            $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
+            if ($database_gegevens == FALSE) {
+                header("location: login.php?error=dbconnFailed");
+                exit();
+            } else {
+                // password and hashed password check if it's the same.
+                $passcheck = password_verify($password_form, $database_gegevens['password']);
+                if ($passcheck == FALSE) {
+                    header("location: login.php?error=invalidLogin");
+                    exit();
+                } else if ($passcheck == TRUE && $username = $database_gegevens['username']) {
+                    $_SESSION['fullname'] = $database_gegevens['fullname'];
+                    $_SESSION['username'] = $database_gegevens['username'];
+                    $_SESSION['niveau'] = $database_gegevens['niveau'];
+                    $_SESSION['id'] = $database_gegevens['id'];
 
+                    header("location: dashboard.php?login=succes");
+                    exit();
+                } else {
 
-        //checked of databasegegevens een array is maar ook of het gevult is met data
-        if (is_array($database_gegevens) && !empty($database_gegevens)) {
-            $this->message = 'Gebruiker bestaat';
-            //check of het ingevulde wachtwoord gelijk is aan dat van het wachtwoord van de gebruikers
-            if ($database_gegevens['password'] == $password_form) {
-                $this->message =  'De gebruiker is succesvol ingelogd';
-                //ingelogd
-                session_start();
-
-                $_SESSION["user"] = $database_gegevens['id'];
-                $_SESSION["username"] = $database_gegevens['username'];
-                $_SESSION["niveau"] = $database_gegevens['niveau'];
-                $_SESSION["naam"] = $database_gegevens['fullname'];
-                $_SESSION["status"] = TRUE;
-
-                //stuurt de gebruiker door naar de stellingen pagina
-                header("Location: dashboard.php");
+                    header("location: login.php?error=invalidData");
+                    exit();
+                }
             }
-        } else {
-            echo "werkt niet";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //query die de gegevens na leest
+    // $sql = "SELECT * FROM huiswerkheroes WHERE email = :email AND password = :pass";
+    // $statement = $this->db->prepare($sql);
+    // $statement->bindParam(":email", $email_form);
+    // $statement->bindParam(":pass", $password_form);
+    // $statement->execute();
+    // $database_gegevens = $statement->fetchALL(PDO::FETCH_ASSOC);
+
+
+
+    //checked of databasegegevens een array is maar ook of het gevult is met data
+    //     if (is_array($database_gegevens) && !empty($database_gegevens)) {
+    //         $this->message = 'Gebruiker bestaat';
+    //         //check of het ingevulde wachtwoord gelijk is aan dat van het wachtwoord van de gebruikers
+    //         if ($database_gegevens['password'] == $password_form) {
+    //             $this->message =  'De gebruiker is succesvol ingelogd';
+    //             //ingelogd
+    //             session_start();
+
+    //             $_SESSION["user"] = $database_gegevens['id'];
+    //             $_SESSION["username"] = $database_gegevens['username'];
+    //             $_SESSION["niveau"] = $database_gegevens['niveau'];
+    //             $_SESSION["naam"] = $database_gegevens['fullname'];
+    //             $_SESSION["status"] = TRUE;
+
+    //             //stuurt de gebruiker door naar de stellingen pagina
+    //             header("Location: dashboard.php");
+    //         }
+    //     } else {
+    //         echo "werkt niet";
+    //     }
+    // }
     public function registerstudent($naam, $email, $username, $password, $niveau)
     {
         //query waarmee een gebruiker data in de database doet zodat hij zichzelf kan registreren
