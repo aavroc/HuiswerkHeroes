@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 
@@ -20,26 +19,3 @@ catch(PDOException $e) {
 }
 
 ?>
-=======
-<?php
-session_start();
-
-// Define database
-define('dbhost', 'localhost');
-define('dbuser', 'root');
-define('dbpass', '');
-define('dbname', 'rotary_huiswerkheroes');
-
-// Connecting database
-try {
-	$connect = new PDO("mysql:host=".dbhost."; dbname=".dbname, dbuser, dbpass);
-	$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// catching exception errors
-}
-catch(PDOException $e) {
-	echo $e->getMessage();
-}
-
-?>
->>>>>>> f916736240229d922ea969ebb99f15858b156f2c
